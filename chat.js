@@ -11,32 +11,35 @@ chat.map().val(function(msg, field){
 	var $ul = $('ul'), $last = $.sort(field, $ul.lastChild), $msg;
 	($msg = $("#msg-" + field) || $ul.insertBefore($.model.cloneNode(true), $last.nextSibling)).id = 'msg-' + field;
 	$msg.style = "height: 1.3em";
+	msg.color = msg.color || "000, 000, 000, 100";
 
-//	$('.who', $msg)[$.text] = msg.who;
+	var generateElement = function(selector, value, style) {
+		var element = $msg.querySelector(selector);
+		element.textContent = value;
+		element.style = style;
+		return element;
+	};
 
-	var elem = $msg.querySelector('.who');
-	elem.textContent = msg.who;
-	elem.style = "background: rgba(" + (msg.color || "000, 000, 000, 100") + "); color: white; font-weight: bold; padding: 0.1em 0.25em; border-radius: 0.2em";
+	generateElement('.who', msg.who, "background: rgba(" + msg.color + ");");
+	generateElement('.what', msg.what, "color: rgba(" + msg.color + ");");
+	generateElement('.when', new Date(msg.when).toLocaleTimeString().toLowerCase()
+		, "color: rgba(" + msg.color + ");");
 
-	var elem = $msg.querySelector('.what');
-	elem.textContent = msg.what;
-	elem.style.color = "rgba(" + msg.color +")";
-
-
-	$('.what', $msg)[$.text] = msg.what;
-	$('.when', $msg)[$.text] = new Date(msg.when).toLocaleTimeString().toLowerCase();
-	$('.sort', $msg)[$.text] = field;
+// TODO: VERIFY FOLLOWING REFACTOR DOESN'T BREAK ANY SORTING
+//	$('.sort', $msg)[$.text] = field;
+//	var $ = function(selector, element){return (element || document).querySelector(selector)} // make native look like jQuery.
+	generateElement('.sort', field);
 
 	/* keep the input form in view, unless the user has scrolled up to review earlier messages */
 	if(document.body.scrollHeight - (window.scrollY + window.innerHeight) <= $ul.lastChild.scrollHeight + 50){
 		window.scrollTo(0, document.body.scrollHeight);
 	}
+
+	localStorageButton();
+
 });
 
-
-var $ = function(selector, element){
-	return (element || document).querySelector(selector)
-} // make native look like jQuery.
+var $ = function(selector, element){return (element || document).querySelector(selector)} // make native look like jQuery.
 
 $.sort = function(when, e){ return (when > ($('.sort', e)[$.text] || 0))? e : $.sort(when, e.previousSibling) }
 $.text = document.body.textContent? 'textContent' : 'innerText'; // because browsers are stupid.
@@ -64,4 +67,15 @@ $('form').onsubmit = function(e){
 	$('.what', this).value = '';
 	// ?????????????????????????????????????????????????
 	return (e && e.preventDefault()), false;
+};
+
+function localStorageButton(clear) {
+	var msg;
+
+	if (clear)  {
+		localStorage.clear();
+		msg = 'localStorage clear';
+	}
+
+	$('#storage')[$.text] = msg || ("Clear " + localStorage.length + " item" + (localStorage.length === 1 ? '' : 's'));
 };

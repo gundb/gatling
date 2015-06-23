@@ -25,8 +25,9 @@ ul .when {
     font-size: 12pt;
 }
 
-.message {
-    height: 1.5em;
-    border: red
-    padding: 3em;
+li .who {
+    color: white;
+    font-weight: bold;
+    padding: 0.1em 0.25em;
+    border-radius: 0.2em
 }
