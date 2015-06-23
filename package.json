@@ -1,0 +1,46 @@
+{
+  "name": "gatling",
+  "version": "0.1.0",
+  "description": "Chat system based on GUN",
+  "main": "index.js",
+  "scripts": {
+    "start": "node http.js 4242"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gundb/gatling.git"
+  },
+  "keywords": [
+    "chat",
+    "graph",
+    "document",
+    "key",
+    "value",
+    "relational",
+    "datastore",
+    "database",
+    "engine",
+    "realtime",
+    "decentralized",
+    "peer-to-peer",
+    "P2P",
+    "OSS",
+    "distributed",
+    "embedded",
+    "localstorage",
+    "S3"
+  ],
+  "author": "Mark Nadal",
+  "license": "(Zlib OR MIT OR Apache-2.0)",
+  "bugs": {
+    "url": "https://github.com/gundb/gatling/issues"
+  },
+  "homepage": "https://github.com/gundb/gatling#readme",
+  "engines": {
+    "node": ">=0.6.6",
+    "iojs": ">=0.0.1"
+  },
+  "dependencies": {
+    "gun": "amark/gun#develop"
+  }
+}

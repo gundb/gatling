@@ -1,0 +1,6 @@
+node_modules/*
+npm-debug.log
+*data.json
+*.db
+.idea/
+data.json
