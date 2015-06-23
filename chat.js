@@ -10,7 +10,7 @@ var chat = Gun(location.origin + '/gun').get('example/chat/data').not(function()
 chat.map().val(function(msg, field){
 	var $ul = $('ul'), $last = $.sort(field, $ul.lastChild), $msg;
 	($msg = $("#msg-" + field) || $ul.insertBefore($.model.cloneNode(true), $last.nextSibling)).id = 'msg-' + field;
-	$msg.style = "height: 1.3em";
+	$msg.style = "min-height: 1.3em; line-height: 1.25em;";
 	msg.color = msg.color || "000, 000, 000, 100";
 
 	var generateElement = function(selector, value, style) {
