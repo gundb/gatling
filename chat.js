@@ -56,9 +56,7 @@ $('form').onsubmit = function(e){
 	// save the form's what value to the gun msg record
 	msg.what = $('.what', this).value || '';
 	// saves the time plus a random 4 character string as the msg's entry path
-	chat.path(msg.when + '_' + Gun.text.random(4)).put(msg, function cb(err, ok) {
-		console.log("Did we save?", err, ok);
-	});
+	chat.path(msg.when + '_' + Gun.text.random(4)).put(msg);
 	// clears the form's what field
 	$('.what', this).value = '';
 	// ?????????????????????????????????????????????????
