@@ -4,3 +4,4 @@ npm-debug.log
 *.db
 .idea/
 data.json
+.DS_Store
