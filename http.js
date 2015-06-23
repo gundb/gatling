@@ -3,7 +3,7 @@ var port = process.env.OPENSHIFT_NODEJS_PORT || process.env.VCAP_APP_PORT || pro
 var Gun = require('gun');
 Gun.log.verbose = true;
 var gun = Gun({
-	file: 'data.json',
+	file: false && 'data.json',
 	s3: {
 		key: process.env.AWS_ACCESS_KEY_ID, // AWS Access Key
 		secret: process.env.AWS_SECRET_ACCESS_KEY, // AWS Secret Token
