@@ -10,14 +10,16 @@ var chat = Gun(location.origin + '/gun').get('example/chat/data').not(function()
 chat.map().val(function(msg, field){
 	var $ul = $('ul'), $last = $.sort(field, $ul.lastChild), $msg;
 	($msg = $("#msg-" + field) || $ul.insertBefore($.model.cloneNode(true), $last.nextSibling)).id = 'msg-' + field;
+	$msg.style = "height: 1.3em";
 
 //	$('.who', $msg)[$.text] = msg.who;
 
 	var elem = $msg.querySelector('.who');
-	console.log("ELEM" );
-	console.log(elem);
 	elem.textContent = msg.who;
-	console.log(msg.color);
+	elem.style = "background: rgba(" + (msg.color || "000, 000, 000, 100") + "); color: white; font-weight: bold; padding: 0.1em 0.25em; border-radius: 0.2em";
+
+	var elem = $msg.querySelector('.what');
+	elem.textContent = msg.what;
 	elem.style.color = "rgba(" + msg.color +")";
 
 
@@ -31,6 +33,7 @@ chat.map().val(function(msg, field){
 	}
 });
 
+
 var $ = function(selector, element){
 	return (element || document).querySelector(selector)
 } // make native look like jQuery.
@@ -40,7 +43,7 @@ $.text = document.body.textContent? 'textContent' : 'innerText'; // because brow
 ($.model = $('ul li').cloneNode(true)).removeAttribute('class');
 
 // if there is an existing alias cookie then set the form's who field to that alias' value
-$('.who', $('form')).value = (document.cookie.match(/alias\=(.*?)(\&|$|\;)/i)||[])[1]||'';
+$('#user').value = (document.cookie.match(/alias\=(.*?)(\&|$|\;)/i)||[])[1]||'';
 // set the default user input focus to the form's what field
 $('.what', $('form')).focus();
 // function that runs whenever the user clicks or taps the submit button or presses enter from the message field
@@ -50,7 +53,7 @@ $('form').onsubmit = function(e){
 	// saves the current time to the gun msg record
 	msg.when = Gun.time.is();
 	// saves the local username to gun msg record and browser cookie
-	document.cookie = ('alias=' + (msg.who = $('.who', this).value || 'user' + Gun.text.random(6)));
+	document.cookie = ('alias=' + (msg.who = $('#user').value || 'user' + Gun.text.random(6)));
 	// saves the local username's colorization value to gun msg record and browser cookie
 	document.cookie = ('colorized=' + (msg.color = (colorUser(msg.who))));
 	// save the form's what value to the gun msg record

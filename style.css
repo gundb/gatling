@@ -24,3 +24,9 @@ ul .when {
     color: #555;
     font-size: 12pt;
 }
+
+.message {
+    height: 1.5em;
+    border: red
+    padding: 3em;
+}
