@@ -16,7 +16,8 @@ chat.map().val(function(msg, field){
 	var generateElement = function(selector, value, style) {
 		var element = $msg.querySelector(selector);
 		element.textContent = value;
-		element.style = style;
+		element.style = style || "";
+		console.log(element);
 		return element;
 	};
 
