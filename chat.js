@@ -8,20 +8,22 @@ var chat = Gun(location.origin + '/gun').get('example/chat/data').not(function()
    where msg is the record containing the raw who, what, and when, and
    where field is the date/time with a random string assigned when generated for disambiguation */
 chat.map().val(function(msg, field){
-	var $ul = $('ul'), $last = $.sort(field, $ul.lastChild), $msg;
-	($msg = $("#msg-" + field) || $ul.insertBefore($.model.cloneNode(true), $last.nextSibling)).id = 'msg-' + field;
+	var $ul = $('ul')
+		, $last = $.sort(field, $ul.lastChild)
+		, $msg; ($msg = $("#msg-" + field) || $ul.insertBefore($.model.cloneNode(true)
+		, $last.nextSibling)).id = 'msg-' + field;
+
 	$msg.style = "min-height: 1.3em; line-height: 1.25em;";
 	msg.color = msg.color || "000, 000, 000, 100";
 
 	var generateElement = function(selector, value, style) {
 		var element = $msg.querySelector(selector);
 		element.textContent = value;
-		element.style = style || "";
-		console.log(element);
+		if(style) { element.setAttribute('style', style) };
 		return element;
 	};
 
-	generateElement('.who', msg.who, "background: rgba(" + msg.color + ");");
+	generateElement('.who', msg.who, "background: rgba(" + msg.color + "); color: white;");
 	generateElement('.what', msg.what, "color: rgba(" + msg.color + ");");
 	generateElement('.when', new Date(msg.when).toLocaleTimeString().toLowerCase()
 		, "color: rgba(" + msg.color + ");");
