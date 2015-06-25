@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<widget xmlns   = "http://www.w3.org/ns/widgets"
+        xmlns:gap   = "http://phonegap.com/ns/1.0"
+        id          = "io.gundb.gatling"
+        versionCode = "1"
+        version     = "0.1.0" >
+
+    <!-- versionCode is optional and Android only -->
+
+    <name>Gatling Gun Holster</name>
+
+    <description>
+        Gatling is a super simple, self-hosted, chat system built using GUN (http://gunDB.io).  GUN is a realtime, decentralized, embedded, graph database engine.  The Gatling Gun Holster is a cross-platform, mobile app that provides some additional functionality for Gatling.
+    </description>
+
+    <author href="https://github.com/metasean/">
+        MetaSean
+    </author>
+
+
+    <feature name="http://api.phonegap.com/1.0/notification" />
+
+    <access origin="http://gatling-gun.herokuapp.com/" subdomains="true" />
+
+</widget>
