@@ -1,10 +1,14 @@
 {
   "name": "gatling",
+  "private": true,
   "version": "0.1.0",
   "description": "Chat system based on GUN",
   "main": "index.js",
   "scripts": {
-    "start": "node http.js 4242"
+    "start": "node http.js 4242",
+    "dev": "gulp devSteps",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "publish": "echo \"Yo, don't publish me!\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -42,5 +46,11 @@
   },
   "dependencies": {
     "gun": "amark/gun#develop"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-shell": "^0.4.2",
+    "gulp-util": "^3.0.6",
+    "lodash": "^3.9.3"
   }
 }
