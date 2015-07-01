@@ -1,4 +1,17 @@
 /* connect to the example chat data file*/
+
+marked.setOptions({
+	renderer: new marked.Renderer(),
+	gfm: false,
+	tables: true,
+	breaks: false,
+	pedantic: false,
+	sanitize: true,
+	smartLists: true,
+	smartypants: true
+});
+
+
 var chat = Gun(location.origin + '/gun').get('example/chat/data').not(function(){
 	/* put an initial welcome message into the example chat data */
 	return this.put({1: {who: 'Welcome', what: "to the chat app!", when: 1}}).key('example/chat/data');
