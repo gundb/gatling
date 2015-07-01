@@ -12,3 +12,7 @@ gulp.task('devSteps', shell.task([
 	"npm install",
 	"node http.js 4242"]
 ));
+
+gulp.task('dogfood', shell.task([
+  "git push gatling-gun head:master"]
+));

@@ -1,39 +1,49 @@
 <!DOCTYPE html>
 <html>
-	<head>
-    <!-- standard HTML header content -->
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <title>Gatling: GUN-powered chat</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="style.css" />
+<head>
+  <!-- standard HTML header content -->
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" charset="utf-8"/>
+  <title>Gatling: GUN-powered chat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="style.css"/>
 
-    <!-- where we include the actual gun library -->
-    <script src="../../gun.js"></script>
-	</head>
+  <!-- where we include the actual gun library -->
+  <script src="../../gun.js"></script>
+</head>
 
-	<body>
+<body>
 
   <input id="user" class="who" placeholder="alias" />
   <button id="storage" onclick="localStorageButton(true);"> </button>
 
-    <!-- where messages will be displayed;
-         NOTE: <ul> and <li> must not be separated;
-         the <li> serves as a template -->
-		<ul><li class="hide">
-			<i class="when">0</i>
-			<b class="who"></b>:
-			<span class="what"></span>
-			<span class="hide sort">0</span>
-		</li></ul>
+  <!-- where messages will be displayed;
+       NOTE: <ul> and <li> must not be separated;
+       the <li> serves as a template -->
 
-		<form>
-			<input class="what" placeholder="message">
-			<button>send</button>
-		</form>
+  <ul><li class="hide">
+    <i class="when">0</i>
+    <b class="who"></b>:
+    <span class="what"></span>
+    <span class="hide sort">0</span>
+  </li></ul>
 
-    <script src="colorize.js"></script>
-		<script src="chat.js"></script>
+  <form>
+    <textarea class="what" placeholder="message"></textarea>
+    <button>send</button>
 
-	</body>
+  <!-- SCRIPTS -->
+  <script src="colorize.js"></script>
+  <script src="node_modules/marked/marked.min.js"></script>
+  <script src="chat.js"></script>
+
+
+  <!-- Ensuring MARKED markup is basically working -->
+  <div id="content"></div>
+  <script>
+    document.getElementById('content').innerHTML =
+      marked('# Marked in browser\n\nRendered by **marked**.');
+  </script>
+
+</body>
 
 </html>

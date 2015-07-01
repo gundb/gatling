@@ -7,6 +7,7 @@
   "scripts": {
     "start": "node http.js 4242",
     "dev": "gulp devSteps",
+    "dogfood": "gulp dogfood",
     "test": "echo \"Error: no test specified\" && exit 1",
     "publish": "echo \"Yo, don't publish me!\" && exit 1"
   },
@@ -45,7 +46,8 @@
     "iojs": ">=0.0.1"
   },
   "dependencies": {
-    "gun": "amark/gun#develop"
+    "gun": "amark/gun#develop",
+    "marked": "^0.3.3"
   },
   "devDependencies": {
     "gulp": "^3.9.0",

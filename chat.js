@@ -8,9 +8,11 @@ var chat = Gun(location.origin + '/gun').get('example/chat/data').not(function()
    where msg is the record containing the raw who, what, and when, and
    where field is the date/time with a random string assigned when generated for disambiguation */
 chat.map().val(function(msg, field){
+
 	var $ul = $('ul')
 		, $last = $.sort(field, $ul.lastChild)
-		, $msg; ($msg = $("#msg-" + field) || $ul.insertBefore($.model.cloneNode(true)
+		, $msg;
+	($msg = $("#msg-" + field) || $ul.insertBefore($.model.cloneNode(true)
 		, $last.nextSibling)).id = 'msg-' + field;
 
 	$msg.style = "min-height: 1.3em; line-height: 1.25em;";
@@ -18,15 +20,20 @@ chat.map().val(function(msg, field){
 
 	var generateElement = function(selector, value, style) {
 		var element = $msg.querySelector(selector);
-		element.textContent = value;
-		if(style) { element.setAttribute('style', style) };
+		if (selector === ".what") {
+			element.innerHTML = marked(value);
+		} else {
+			element.textContent = value;
+		}
+		if(style) { element.setAttribute('style', style) }
 		return element;
 	};
 
+	/* Show a message */
 	generateElement('.who', msg.who, "background: rgba(" + msg.color + "); color: white;");
-	generateElement('.what', msg.what, "color: rgba(" + msg.color + ");");
 	generateElement('.when', new Date(msg.when).toLocaleTimeString().toLowerCase()
 		, "color: rgba(" + msg.color + ");");
+	generateElement('.what', msg.what, "color: rgba(" + msg.color + ");");
 
 // TODO: VERIFY FOLLOWING REFACTOR DOESN'T BREAK ANY SORTING
 //	$('.sort', $msg)[$.text] = field;
@@ -42,10 +49,16 @@ chat.map().val(function(msg, field){
 
 });
 
-var $ = function(selector, element){return (element || document).querySelector(selector)} // make native look like jQuery.
+var $ = function(selector, element) {
+	return (element || document).querySelector(selector)
+} // make native look like jQuery.
 
-$.sort = function(when, e){ return (when > ($('.sort', e)[$.text] || 0))? e : $.sort(when, e.previousSibling) }
+$.sort = function(when, e) {
+	return (when > ($('.sort', e)[$.text] || 0))? e : $.sort(when, e.previousSibling)
+};
+
 $.text = document.body.textContent? 'textContent' : 'innerText'; // because browsers are stupid.
+
 ($.model = $('ul li').cloneNode(true)).removeAttribute('class');
 
 // if there is an existing alias cookie then set the form's who field to that alias' value
