@@ -46,7 +46,7 @@
     "iojs": ">=0.0.1"
   },
   "dependencies": {
-    "gun": "amark/gun#5059926b0b",
+    "gun": "amark/gun#develop",
     "marked": "^0.3.3"
   },
   "devDependencies": {

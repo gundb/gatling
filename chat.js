@@ -1,5 +1,6 @@
 /* connect to the example chat data file*/
 
+
 marked.setOptions({
 	renderer: new marked.Renderer(),
 	gfm: false,
@@ -11,6 +12,7 @@ marked.setOptions({
 	smartypants: true
 });
 
+Gun.log.verbose = true;
 
 var chat = Gun(location.origin + '/gun').get('example/chat/data').not(function(){
 	/* put an initial welcome message into the example chat data */
