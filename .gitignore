@@ -5,3 +5,5 @@ npm-debug.log
 .idea/
 data.json
 .DS_Store
+data_v_0_1_0.json
+test.html
