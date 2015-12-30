@@ -8,7 +8,7 @@
     "start": "node http.js 4242",
     "dev": "gulp devSteps",
     "dogfood": "gulp dogfood",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "nightwatch",
     "publish": "echo \"Yo, don't publish me!\" && exit 1"
   },
   "repository": {
@@ -55,6 +55,7 @@
     "gulp-shell": "^0.4.2",
     "gulp-util": "^3.0.6",
     "lodash": "^3.9.3",
-    "mocha": "^2.3.4"
+    "mocha": "^2.3.4",
+    "nightwatch": "^0.8.12"
   }
 }
