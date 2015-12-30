@@ -5,7 +5,7 @@
   "description": "Chat system based on GUN",
   "main": "index.js",
   "scripts": {
-    "start": "node http.js 4242",
+    "start": "node src/server.js 4242",
     "dev": "gulp devSteps",
     "dogfood": "gulp dogfood",
     "test": "nightwatch",
@@ -46,7 +46,8 @@
     "iojs": ">=0.0.1"
   },
   "dependencies": {
-    "gun": "amark/gun#develop",
+    "express": "^4.13.3",
+    "gun": "^0.2.5",
     "marked": "^0.3.3"
   },
   "devDependencies": {

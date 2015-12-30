@@ -16,7 +16,7 @@ Then in your terminal, run:
 git clone git+https://github.com/gundb/gatling.git
 ```
 
-If you want to have a copy of the data on S3, update `chat/http.js` with your AWS S3 credentials:
+If you want to have a copy of the data on S3, update `chat/server.js` with your AWS S3 credentials:
 
 ```javascript  
 var gun = Gun({

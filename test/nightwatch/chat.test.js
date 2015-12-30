@@ -1,12 +1,18 @@
 /*jslint node: true */
 'use strict';
 
+// use chai's expect().to.be library
+var expect = require('chai').expect;
+
 module.exports = {
-	'Testing the test test': function (browser) {
 
-		browser.url('http://google.com').waitForElementVisible('body', 500);
+	'Serve the index.html page': function (browser) {
+		browser.url('localhost:4242')
+			.waitForElementVisible('body', 500);
 
-		browser.expect.element('body').to.be.visible;
+		browser.getTitle(function (title) {
+			expect(title).to.match(/gun/i);
+		});
 
 		browser.end();
 	}

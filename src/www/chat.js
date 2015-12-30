@@ -1,4 +1,3 @@
-
 /* connect to the example chat data file*/
 
 function adds( ) {

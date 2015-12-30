@@ -10,7 +10,7 @@ gulp.task('default', ['devSteps']);
 
 gulp.task('devSteps', shell.task([
 	"npm install",
-	"node src/http.js 4242"]
+	"node src/server.js 4242"]
 ));
 
 gulp.task('dogfood', shell.task([

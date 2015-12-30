@@ -5,11 +5,9 @@
 
   <testsuite name="chat.test"
     errors="0" failures="0" hostname="" id="" package="chat.test" skipped="0"
-    tests="1" time="3.621" timestamp="Wed, 30 Dec 2015 00:53:50 GMT">
+    tests="1" time="1.938" timestamp="Wed, 30 Dec 2015 03:25:23 GMT">
 
-    <testcase name="Testing the test test" time="3.621" assertions="2">
-
-
+    <testcase name="Serve the index.html page" time="1.938" assertions="1">
 
 
     </testcase>
