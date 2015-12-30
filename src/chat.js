@@ -1,4 +1,7 @@
 
+// var marked = require('marked');
+// var Gun = require('gun');
+
 /* connect to the example chat data file*/
 
 function adds( ) {

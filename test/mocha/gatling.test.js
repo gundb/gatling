@@ -1,9 +1,5 @@
 /* global adds */
 
-// var chat = require('../chat');
-// var marked = require('marked');
-// var Gun = require('gun');
-
 describe('Gatling', function () {
 
 	it('should connect to chat.js', function() {
