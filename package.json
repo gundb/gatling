@@ -47,7 +47,7 @@
   },
   "dependencies": {
     "express": "^4.13.3",
-    "gun": "^0.2.5",
+    "gun": "amark/gun#develop",
     "marked": "^0.3.3"
   },
   "devDependencies": {
