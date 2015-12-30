@@ -50,9 +50,11 @@
     "marked": "^0.3.3"
   },
   "devDependencies": {
+    "chai": "^3.4.1",
     "gulp": "^3.9.0",
     "gulp-shell": "^0.4.2",
     "gulp-util": "^3.0.6",
-    "lodash": "^3.9.3"
+    "lodash": "^3.9.3",
+    "mocha": "^2.3.4"
   }
 }

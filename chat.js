@@ -1,4 +1,15 @@
+
+// var marked = require('marked');
+// var Gun = require('gun');
+
 /* connect to the example chat data file*/
+
+function adds( ) {
+	args = Array.prototype.slice.call(arguments)
+	return args.reduce( function(last, current) {
+		return last + current;
+	})
+};
 
 
 marked.setOptions({
@@ -14,7 +25,13 @@ marked.setOptions({
 
 Gun.log.verbose = true;
 
-var chat = Gun(location.origin + '/gun').get('example/chat/data').not(function(){
+var peers;
+
+try {
+	peers = window.location + '/gun'
+} catch (e) {}
+
+var chat = Gun(peers).get('example/chat/data').not(function(){
 	/* put an initial welcome message into the example chat data */
 	return this.put({1: {who: 'Welcome', what: "to the chat app!", when: 1}}).key('example/chat/data');
 });
