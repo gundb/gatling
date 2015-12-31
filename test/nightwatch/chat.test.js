@@ -7,7 +7,7 @@ var expect = require('chai').expect;
 module.exports = {
 
 	'Serve the index.html page': function (browser) {
-		browser.url('localhost:4242')
+		browser.url('http://localhost:4242')
 			.waitForElementVisible('body', 500);
 
 		browser.getTitle(function (title) {
