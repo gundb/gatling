@@ -1,12 +1,10 @@
 /* connect to the example chat data file*/
 
-function adds( ) {
-	args = Array.prototype.slice.call(arguments)
-	return args.reduce( function(last, current) {
-		return last + current;
-	})
+var username = {
+	exists: function () {
+		return Boolean(localStorage.who);
+	}
 };
-
 
 marked.setOptions({
 	renderer: new marked.Renderer(),

@@ -19,7 +19,7 @@ module.exports = {
 	},
 
 	'Get the user id - no user in localStorage': function (browser) {
-		var username = '#user';
+		var username = '#who';
 
 		browser.url('http://localhost:4242')
 			.waitForElementVisible('body', 500);

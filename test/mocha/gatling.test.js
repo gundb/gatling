@@ -1,9 +1,12 @@
-/* global adds */
+/*globals describe, it, expect, username */
 
 describe('Gatling', function () {
+	'use strict';
 
-	it('should connect to chat.js', function() {
-		expect(adds(1,1)).to.be(2);
+	it('should check localStorage for user', function () {
+		localStorage.clear();
+		var usernameExists = username.exists();
+		expect(usernameExists).to.be(false);
 	});
 
 });
