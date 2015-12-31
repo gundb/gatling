@@ -8,11 +8,16 @@ var gulp = require('gulp')
 
 gulp.task('default', ['devSteps']);
 
-gulp.task('devSteps', shell.task([
+gulp.task('devStart', shell.task([
 	"npm install",
-	"node server.js 4242"]
+	"node src/server.js 4242"]
 ));
 
 gulp.task('dogfood', shell.task([
   "git push gatling-gun head:master"]
+));
+
+gulp.task('start', shell.task([
+	"npm install",
+	"node src/server.js 4242"]
 ));

@@ -5,8 +5,8 @@
   "description": "Chat system based on GUN",
   "main": "index.js",
   "scripts": {
-    "start": "node src/server.js 4242",
-    "dev": "gulp devSteps",
+    "start": "gulp start",
+    "dev": "gulp devStart",
     "dogfood": "gulp dogfood",
     "test": "nightwatch",
     "publish": "echo \"Yo, don't publish me!\" && exit 1"
@@ -35,7 +35,7 @@
     "localstorage",
     "S3"
   ],
-  "author": "Mark Nadal",
+  "author": "PsychoLlama & MetaSean",
   "license": "(Zlib OR MIT OR Apache-2.0)",
   "bugs": {
     "url": "https://github.com/gundb/gatling/issues"

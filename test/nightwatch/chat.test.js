@@ -7,7 +7,8 @@ var expect = require('chai').expect;
 module.exports = {
 
 	'Serve the index.html page': function (browser) {
-		browser.url('http://localhost:4242')
+		// TODO: universalize the port number
+		browser.url('http://localhost:4242')  
 			.waitForElementVisible('body', 500);
 
 		browser.getTitle(function (title) {
@@ -15,5 +16,23 @@ module.exports = {
 		});
 
 		browser.end();
+	},
+
+	'Get the user id - no user in localStorage': function (browser) {
+		var username = '#user';
+
+		browser.url('http://localhost:4242')
+			.waitForElementVisible('body', 500);
+
+		browser.execute(function () {
+			localStorage.clear();
+			console.log('Yo!'); // TODO: override browser execute console.log
+		});
+
+		browser.refresh( function () {
+			browser.expect.element(username).to.be.present;
+			browser.expect.element(username).to.match(/\S/);
+			browser.end();
+		});
 	}
 };
