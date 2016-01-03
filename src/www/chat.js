@@ -2,9 +2,19 @@
 
 var username = {
 	exists: function () {
-		return Boolean(localStorage.who);
+		return Boolean(localStorage.username);
+	},
+
+	generate: function () {
+		localStorage.username = Gun.text.random(6);
+		return localStorage.username;
 	}
+
 };
+
+/*
+		PREVIOUS CODE
+*/
 
 marked.setOptions({
 	renderer: new marked.Renderer(),
