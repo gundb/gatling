@@ -1,10 +1,12 @@
 /*jslint node: true */
 /*
-	TODO: nightwatch doesn't
-	seem to notice this file.
-	Once fixed, make togglable
-	between local testing and
+	TODO: nightwatch doesn't seem to notice this file.
+	Once fixed, make togglable between local testing and 
 	browserstack testing.
+
+	Potential references:
+	 - https://github.com/nightwatchjs/nightwatch/issues/679
+	 - https://github.com/peterjoel/frpreact/blob/master/nightwatch.conf.js
 */
 
 var conf = require('nightwatch.json');

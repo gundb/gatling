@@ -8,6 +8,16 @@ var username = {
 	generate: function () {
 		localStorage.username = Gun.text.random(6);
 		return localStorage.username;
+	},
+
+	get: function () {
+		var noUsername = !username.exists();
+
+		if (noUsername) {
+			var alias = username.generate();
+			localStorage.username = alias;
+		}
+		return localStorage.username;
 	}
 
 };
@@ -41,8 +51,8 @@ var chat = Gun(peers).get('example/chat/data').not(function(){
 });
 
 /* pull data from the example chat data source & map over each entry,
-   where msg is the record containing the raw who, what, and when, and
-   where field is the date/time with a random string assigned when generated for disambiguation */
+	 where msg is the record containing the raw who, what, and when, and
+	 where field is the date/time with a random string assigned when generated for disambiguation */
 chat.map().val(function(msg, field){
 
 	var $ul = $('ul')
