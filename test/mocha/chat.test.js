@@ -29,6 +29,15 @@ describe('Gatling', function () {
 				expect(alias).to.exist;
 				expect(alias).to.not.be.empty;
 			});
+
+			it('should use an existing username - when there was a username in localStorage', function() {
+				var user = "Night Eyas"
+				localStorage.clear();
+				localStorage.username = user;
+				var alias = username.get();
+				expect(alias).to.exist;
+				expect(alias).to.equal(user);
+			});
 		})
 	});
 

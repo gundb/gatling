@@ -11,13 +11,18 @@ var username = {
 	},
 
 	get: function () {
-		var noUsername = !username.exists();
+		// var noUsername = !username.exists();
 
-		if (noUsername) {
+console.log('@@@@@@@@@@ username.get');
+
+		if (!username.exists()) {
+console.log('@@@@@@@@@@ no username - gonna generate one');
 			var alias = username.generate();
 			localStorage.username = alias;
 		}
 
+console.log('@@@@@@@@@@ returning localStorage.username:', localStorage.username);
+return false;
 		return localStorage.username;
 	}
 

@@ -25,12 +25,14 @@ gun = new Gun({
 		bucket: process.env.AWS_S3_BUCKET
 	}
 });
+
 gun.wsp(server);
 server.use(gun.wsp.server);
-console.log(server.get('port'));
+
 www = path.join(__dirname, 'www');
 server.use('/', express['static'](www));
 
 server.listen(port, function () {
 	console.log('Server started on port ' + port + ' with /gun');
 });
+
