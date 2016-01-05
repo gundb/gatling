@@ -56,7 +56,6 @@ module.exports = {
 			browser.expect.element(username.element)
 				.value.to.equal(username.value);
 
-
 			browser.end();
 		});
 
