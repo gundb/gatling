@@ -8,10 +8,10 @@ module.exports = {
 
 	'Serve the index.html page': function (browser) {
 		// TODO: universalize the port number
-		browser.url('http://localhost:4242')  
+		browser.url('http://localhost:4242')
 			.waitForElementVisible('body', 500);
 
-		browser.getTitle(function (title) {
+		browser.getTitle( function (title) {
 			expect(title).to.match(/gun/i);
 		});
 
@@ -45,17 +45,20 @@ module.exports = {
 		browser.url('http://localhost:4242')
 			.waitForElementVisible('body', 500);
 
-		browser.execute( function () {
-			localStorage.username = username.value;
-		});
+		browser.execute( function (value) {
+			localStorage.username = value;
+		}, [username.value]);
 
 		browser.refresh( function () {
-			browser.expect.element(username.element).to.be.present;
-  browser.pause(1000);
-			browser.expect.element(username.element).value.to.equal(username.value);
-			browser.expect.element(username.element).not.to.be.present;
+			browser.expect.element(username.element)
+				.to.be.present;
+
+			browser.expect.element(username.element)
+				.value.to.equal(username.value);
+
+
 			browser.end();
-		})
+		});
 
 	}
 };
@@ -90,5 +93,3 @@ module.exports = {
 //      });
 //   });
 // };
-
-
