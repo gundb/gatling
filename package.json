@@ -57,6 +57,7 @@
     "gulp-util": "^3.0.6",
     "lodash": "^3.9.3",
     "mocha": "^2.3.4",
-    "nightwatch": "^0.8.12"
+    "nightwatch": "^0.8.12",
+    "nodemon": "^1.8.1"
   }
 }

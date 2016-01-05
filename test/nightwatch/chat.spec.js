@@ -31,7 +31,7 @@ module.exports = {
 
 		browser.refresh( function () {
 			browser.expect.element(username).to.be.present;
-			browser.expect.element(username).to.match(/\S/);
+			browser.expect.element(username).value.to.match(/\S/);
 			browser.end();
 		});
 	}

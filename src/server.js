@@ -24,8 +24,10 @@ gun = new Gun({
 		secret: process.env.AWS_SECRET_ACCESS_KEY,
 		bucket: process.env.AWS_S3_BUCKET
 	}
-}).wsp(server);
-
+});
+gun.wsp(server);
+server.use(gun.wsp.server);
+console.log(server.get('port'));
 www = path.join(__dirname, 'www');
 server.use('/', express['static'](www));
 

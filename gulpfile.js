@@ -10,7 +10,7 @@ gulp.task('default', ['devSteps']);
 
 gulp.task('devStart', shell.task([
 	"npm install",
-	"node src/server.js 4242"]
+	"nodemon src/server.js 4242"]
 ));
 
 gulp.task('dogfood', shell.task([
@@ -19,5 +19,5 @@ gulp.task('dogfood', shell.task([
 
 gulp.task('start', shell.task([
 	"npm install",
-	"node src/server.js 4242"]
+	"nodemon src/server.js 4242"]
 ));
