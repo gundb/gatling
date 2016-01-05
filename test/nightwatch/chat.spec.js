@@ -4,6 +4,10 @@
 // use chai's expect().to.be library
 var expect = require('chai').expect;
 
+var username = {
+	input: '#who'
+};
+
 module.exports = {
 
 	'Serve the index.html page': function (browser) {
@@ -11,7 +15,7 @@ module.exports = {
 		browser.url('http://localhost:4242')
 			.waitForElementVisible('body', 500);
 
-		browser.getTitle( function (title) {
+		browser.getTitle(function (title) {
 			expect(title).to.match(/gun/i);
 		});
 
@@ -19,71 +23,80 @@ module.exports = {
 	},
 
 	'Get the user id - no username exists in localStorage': function (browser) {
-		var username = '#who';
 
 		browser.url('http://localhost:4242')
 			.waitForElementVisible('body', 500);
 
-		browser.execute( function () {
+		browser.execute(function () {
 			localStorage.clear();
 			console.log('Yo!'); // TODO: override browser execute console.log
 		});
 
-		browser.refresh( function () {
-			browser.expect.element(username).to.be.present;
-			browser.expect.element(username).value.to.match(/\S/);
+		browser.refresh(function () {
+			browser.expect.element(username.input).to.be.present;
+			browser.expect.element(username.input).value.to.match(/\S/);
 			browser.end();
 		});
 	},
 
 	'Get the user id - username does exist in localStorage': function (browser) {
-		var username = {
-			element: '#who',
-			value: 'the Most Awesome Nighthawk (aka the MAN)'
-		};
+		username.value = 'the Most Awesome Nighthawk (aka the MAN)';
 
 		browser.url('http://localhost:4242')
 			.waitForElementVisible('body', 500);
 
-		browser.execute( function (value) {
+		browser.execute(function (value) {
 			localStorage.username = value;
 		}, [username.value]);
 
-		browser.refresh( function () {
-			browser.expect.element(username.element).to.be.present;
-			browser.expect.element(username.element).value.to.equal(username.value);
+		browser.refresh(function () {
+			browser.expect.element(username.input)
+				.to.be.present;
+
+			browser.expect.element(username.input).value
+				.to.equal(username.value);
+
 			browser.end();
 		});
 	},
 
 	'User edits to the username persist': function (browser) {
-		var username = {
-			element: '#who',
-			value: 'Ned the Nighthawk'
-		};
+		username.value = 'Ned the Nighthawk';
 
-		browser.url('http://localhost:4242')
-			.waitForElementVisible('body', 500);
+		browser.url('http://localhost:4242');
 
 		// should initially be set to a random value
 		browser
-		.execute( function (value) {
-			localStorage.clear();
-		})
-		.refresh( function () {
-			browser.expect.element(username.element).to.be.present;
-			browser.expect.element(username.element).value.to.match(/\S/);
-			browser.expect.element(username.element).value.not.to.equal(username.value);
-		})
-		// simulate user modifying their username
-    .click('input[id=who]')
-		.setValue('input[id=who]', 'Ned the Nighthawk')
-		// should now be set to user's edited value
-		.refresh( function () {
-			browser.expect.element(username.element).to.be.present;
-			browser.expect.element(username.element).value.to.equal(username.value);
-			browser.end();
-		});
+			.execute(function () {
+				localStorage.clear();
+			})
+			.refresh(function () {
+				browser.waitForElementVisible('input', 500);
+
+				browser.expect.element(username.input)
+					.to.be.present;
+
+				browser.expect.element(username.input).value
+					.to.match(/\S/);
+
+				browser.expect.element(username.input).value
+					.not.to.equal(username.value);
+
+				// simulate user modifying their username
+				browser
+					.clearValue(username.input)
+					.setValue(username.input, username.value);
+
+			})
+			.refresh(function () {
+				// should now be set to user's edited value
+				browser.waitForElementVisible(username.input, 500);
+
+				browser.expect.element(username.input).value
+					.to.equal(username.value);
+
+				browser.end();
+			});
 	}
 };
 
