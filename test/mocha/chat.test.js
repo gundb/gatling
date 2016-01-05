@@ -31,13 +31,27 @@ describe('Gatling', function () {
 			});
 
 			it('should use an existing username - when there was a username in localStorage', function() {
-				var user = "Night Eyas"
+				var user = "Night Eyas";
 				localStorage.clear();
 				localStorage.username = user;
 				var alias = username.get();
 				expect(alias).to.exist;
 				expect(alias).to.equal(user);
 			});
+		})
+
+		describe('save', function() {
+			it('should save an edited username', function() {
+				var newName = "Jesse";
+				localStorage.clear();
+				var alias = username.get();
+				expect(alias).to.exist;
+				expect(alias).to.not.be.empty;
+				expect(alias).to.not.equal(newName);
+				var newAlias = username.save(newName);
+				expect(newAlias).to.exist;
+				expect(newAlias).to.equal(newName);
+			})
 		})
 	});
 

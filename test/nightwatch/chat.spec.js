@@ -50,15 +50,40 @@ module.exports = {
 		}, [username.value]);
 
 		browser.refresh( function () {
-			browser.expect.element(username.element)
-				.to.be.present;
-
-			browser.expect.element(username.element)
-				.value.to.equal(username.value);
-
+			browser.expect.element(username.element).to.be.present;
+			browser.expect.element(username.element).value.to.equal(username.value);
 			browser.end();
 		});
+	},
 
+	'User edits to the username persist': function (browser) {
+		var username = {
+			element: '#who',
+			value: 'Ned the Nighthawk'
+		};
+
+		browser.url('http://localhost:4242')
+			.waitForElementVisible('body', 500);
+
+		// should initially be set to a random value
+		browser
+		.execute( function (value) {
+			localStorage.clear();
+		})
+		.refresh( function () {
+			browser.expect.element(username.element).to.be.present;
+			browser.expect.element(username.element).value.to.match(/\S/);
+			browser.expect.element(username.element).value.not.to.equal(username.value);
+		})
+		// simulate user modifying their username
+    .click('input[id=who]')
+		.setValue('input[id=who]', 'Ned the Nighthawk')
+		// should now be set to user's edited value
+		.refresh( function () {
+			browser.expect.element(username.element).to.be.present;
+			browser.expect.element(username.element).value.to.equal(username.value);
+			browser.end();
+		});
 	}
 };
 

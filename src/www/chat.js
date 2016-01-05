@@ -21,12 +21,24 @@ var username = {
 		}
 
 		return localStorage.username;
+	},
+
+	// edit a username
+	save: function(newName) {
+		localStorage.username = newName;
+		return localStorage.username;
 	}
 
 };
 
 // set the username as the input value
 $('#who').val(username.get());
+
+// when a user enters then exits the alias field, 
+// the field's value is saved as their username
+$( "#who" ).blur(function() {
+  username.save($( "#who" )[0].value);
+});
 
 
 
