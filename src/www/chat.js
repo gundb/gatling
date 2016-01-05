@@ -1,36 +1,32 @@
 /* connect to the example chat data file*/
 
 var username = {
+	// check to see if the username exists
 	exists: function () {
 		return Boolean(localStorage.username);
 	},
 
+	// build a username
 	generate: function () {
 		localStorage.username = Gun.text.random(6);
 		return localStorage.username;
 	},
 
+	// return a username
 	get: function () {
-		// var noUsername = !username.exists();
-
-console.log('@@@@@@@@@@ username.get');
 
 		if (!username.exists()) {
-console.log('@@@@@@@@@@ no username - gonna generate one');
 			var alias = username.generate();
 			localStorage.username = alias;
 		}
 
-console.log('@@@@@@@@@@ returning localStorage.username:', localStorage.username);
-return false;
 		return localStorage.username;
 	}
 
 };
 
-(function() {
-	$('#who').val(username.get());
-})();
+// set the username as the input value
+$('#who').val(username.get());
 
 
 
