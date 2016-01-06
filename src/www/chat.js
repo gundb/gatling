@@ -1,43 +1,13 @@
+/*globals $, Gun, username*/
 /* connect to the example chat data file*/
 
-var username = {
-	// check to see if the username exists
-	exists: function () {
-		return Boolean(localStorage.username);
-	},
-
-	// build a username
-	generate: function () {
-		localStorage.username = Gun.text.random(6);
-		return localStorage.username;
-	},
-
-	// return a username
-	get: function () {
-
-		if (!username.exists()) {
-			var alias = username.generate();
-			localStorage.username = alias;
-		}
-
-		return localStorage.username;
-	},
-
-	// edit a username
-	save: function(newName) {
-		localStorage.username = newName;
-		return localStorage.username;
-	}
-
-};
-
 // set the username as the input value
-$('#who').val(username.get());
+username.input.val(username.get());
 
-// when a user enters then exits the alias field, 
+// when a user enters then exits the alias field,
 // the field's value is saved as their username
-$( "#who" ).blur(function() {
-  username.save($( "#who" )[0].value);
+username.input.on('change', function () {
+	username.save(this.value);
 });
 
 
