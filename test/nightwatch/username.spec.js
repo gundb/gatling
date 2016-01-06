@@ -1,9 +1,6 @@
 /*jslint node: true */
 'use strict';
 
-// use chai's expect().to.be library
-var expect = require('chai').expect;
-
 var username = {
 	input: '#who'
 };
@@ -12,22 +9,17 @@ module.exports = {
 
 	'Serve the index.html page': function (browser) {
 		// TODO: universalize the port number
-		browser.url('http://localhost:4242')
-			.waitForElementVisible('body', 500);
+		browser.init().waitForElementPresent('body', 500);
 
-		browser.getTitle(function (title) {
-			expect(title).to.match(/gun/i);
-		});
+		browser.assert.urlContains("index.html");
+		browser.expect.element(username.input).to.be.present;
 
 		browser.end();
 	},
 
 	'Get the user id - no username exists in localStorage': function (browser) {
 
-		browser.url('http://localhost:4242')
-			.waitForElementVisible('body', 500);
-
-		browser.execute(function () {
+		browser.init().execute(function () {
 			localStorage.clear();
 			console.log('Yo!'); // TODO: override browser execute console.log
 		});
@@ -42,8 +34,7 @@ module.exports = {
 	'Get the user id - username does exist in localStorage': function (browser) {
 		username.value = 'the Most Awesome Nighthawk (aka the MAN)';
 
-		browser.url('http://localhost:4242')
-			.waitForElementVisible('body', 500);
+		browser.init().waitForElementVisible('body', 500);
 
 		browser.execute(function (value) {
 			localStorage.username = value;
@@ -63,15 +54,12 @@ module.exports = {
 	'User edits to the username persist': function (browser) {
 		username.value = 'Ned the Nighthawk';
 
-		browser.url('http://localhost:4242');
-
-		// should initially be set to a random value
-		browser
+		browser.init()
 			.execute(function () {
 				localStorage.clear();
 			})
 			.refresh(function () {
-				browser.waitForElementVisible('input', 500);
+				browser.waitForElementVisible(username.input, 500);
 
 				browser.expect.element(username.input)
 					.to.be.present;
