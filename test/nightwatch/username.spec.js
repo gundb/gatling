@@ -73,10 +73,13 @@ module.exports = {
 				// simulate user modifying their username
 				browser
 					.clearValue(username.input)
-					.setValue(username.input, username.value);
+					.setValue(username.input, [
+						username.value,
+						browser.Keys.TAB
+					]);
 
-			})
-			.refresh(function () {
+			});
+			browser.refresh(function () {
 				// should now be set to user's edited value
 				browser.waitForElementVisible(username.input, 500);
 
